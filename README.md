@@ -24,8 +24,6 @@
     이 프로젝트를 로컬 환경에 클론하려면 아래 명령어를 사용하세요:
     
     ```bash
-    bash
-    코드 복사
     git clone https://github.com/yourusername/Ai_Macrofy.git
     
     ```
@@ -55,8 +53,6 @@
 앱은 화면의 특정 좌표를 터치하여 동작을 실행합니다. 예를 들어, Instagram 앱을 실행하고 화면에서 특정 버튼을 자동으로 클릭합니다.
 
 ```json
-json
-코드 복사
 {"actions":[{"type":"touch","coordinates":{"x":720,"y":794}}]}
 
 ```
@@ -66,8 +62,6 @@ json
 앱은 작업을 수행한 후, 목표가 달성되었는지 판단합니다. 목표가 달성되면 **`"done"`** 상태를 반환합니다.
 
 ```json
-json
-코드 복사
 {"actions":[{"type":"done"}]}
 
 ```
