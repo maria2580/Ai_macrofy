@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Ai_macrofy</string>
+    <string name="accessibility_service_description">This service provides enhanced accessibility features.</string>
+    <string name="API_KEY" />
+</resources>

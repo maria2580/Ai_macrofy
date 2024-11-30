@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <!-- 앱 이름 제목 -->
+    <TextView
+        android:id="@+id/app_name_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Ai_macrofy"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:background="@color/edittext_background_color" />
+
+    <!-- OCR 결과를 표시할 TextView -->
+    <TextView
+        android:id="@+id/textView_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Waiting for GPT response..."
+        android:padding="8dp"
+        android:textSize="18sp"
+        android:textColor="@color/text_color"
+        android:background="@color/edittext_background_color" />
+
+    <!-- 프롬프트 입력 -->
+    <EditText
+        android:id="@+id/editText_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your prompt here..."
+        android:padding="8dp"
+        android:background="@color/edittext_background_color"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/text_color" />
+
+
+    <!-- 버튼: 매크로 시작 -->
+    <Button
+        android:id="@+id/button_start_macro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="START MACRO"
+        android:backgroundTint="@color/button_color"
+        android:textColor="@color/button_text_color" />
+
+    <!-- 버튼: 매크로 중지 -->
+    <Button
+        android:id="@+id/button_stop_macro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STOP MACRO"
+        android:backgroundTint="@color/button_color"
+        android:textColor="@color/button_text_color" />
+
+    <!-- API Key 입력 -->
+    <EditText
+        android:id="@+id/editText_api_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter API Key"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"
+        android:background="@color/edittext_background_color"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/text_color" />
+
+    <!-- 버튼: API Key 저장 -->
+    <Button
+        android:id="@+id/button_save_api_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save API Key"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/button_color"
+        android:textColor="@color/button_text_color" />
+</LinearLayout>
