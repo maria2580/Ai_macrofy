@@ -24,7 +24,7 @@
     이 프로젝트를 로컬 환경에 클론하려면 아래 명령어를 사용하세요:
     
     ```bash
-    git clone https://github.com/yourusername/Ai_Macrofy.git
+    git clone https://github.com/maria2580/Ai_Macrofy.git
     
     ```
     
