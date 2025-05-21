@@ -1,94 +1,133 @@
-# **Ai_Macrofy**
+# Ai_macrofy - AI-Powered UI Automation Tool
 
-**Ai_Macrofy**는 사용자의 요청에 따라 자동화된 작업을 수행하는 **Android 애플리케이션**입니다. 이 앱은 **접근성 서비스(Accessibility Service)**를 활용하여 **앱 내에서 동작을 자동으로 실행**하거나, 사용자 인터페이스(UI)를 분석하고 필요한 작업을 자동으로 처리합니다. 이를 통해 **반복적인 작업**을 줄이고, 효율적인 사용자 경험을 제공합니다.
+## 🌟 소개
 
-## **기능**
+**Ai_macrofy**는 사용자의 자연어 명령을 이해하고, OpenAI의 GPT-4o-mini 모델을 활용하여 Android 장치의 UI(사용자 인터페이스) 작업을 자동으로 수행하는 혁신적인 애플리케이션입니다. 이 앱은 접근성 서비스를 통해 현재 화면의 레이아웃을 분석하고, AI가 생성한 명령에 따라 화면을 직접 조작하여 복잡한 작업을 자동화합니다.
 
-- **자동화된 터치**: 화면의 특정 좌표를 터치하여 앱을 제어합니다.
-- **스크롤 및 스와이프**: 화면에서 스크롤 또는 스와이프 동작을 자동으로 수행합니다.
-- **텍스트 입력**: 텍스트를 자동으로 입력하여 양식이나 검색을 자동으로 처리합니다.
-- **동작 완료 여부 판단**: 사용자의 목표가 달성되었는지 분석하고, 필요 없는 동작을 반복하지 않도록 합니다.
-- **유연한 작업 흐름**: 다양한 화면 레이아웃에 대응할 수 있도록 설계되었습니다.
+예를 들어, "인스타그램을 열고 첫 번째 게시물에 좋아요를 눌러줘"와 같은 명령을 이해하고 실행할 수 있도록 설계되었습니다.
 
-## **프로젝트 구조**
+## ✨ 주요 기능
 
-- **`MainActivity`**: 앱의 메인 UI를 담당하는 Activity입니다.
-- **`MacroAccessibilityService`**: 접근성 서비스를 사용하여 자동화된 작업을 실행하는 서비스입니다.
-- **`LayoutAccessibilityService`**: 화면 레이아웃을 분석하여 필요한 작업을 판단하는 서비스입니다.
-- **`MyForegroundService`**: 앱이 백그라운드에서도 지속적으로 작업을 수행할 수 있도록 도와주는 포그라운드 서비스입니다.
+* **자연어 명령 이해 및 실행:** 사용자가 입력한 텍스트 명령을 GPT-4o-mini가 분석하여 UI 자동화 작업으로 변환합니다.
+* **화면 레이아웃 분석:** `LayoutAccessibilityService`를 사용하여 현재 화면의 UI 요소(텍스트, 버튼, 좌표 등)를 JSON 형태로 추출합니다.
+* **GPT 기반 의사결정:** 추출된 화면 레이아웃 정보와 사용자 명령, 그리고 이전 작업 이력을 바탕으로 GPT-4o-mini가 다음 수행할 작업을 결정합니다.
+* **상황인지적 작업 수행:** 이전 화면 레이아웃의 해시값과 GPT의 이전 응답을 기억하여, 동일한 화면에서 불필요한 반복 작업을 방지하고 보다 지능적으로 작업을 이어갑니다.
+* **자동화된 UI 상호작용:** `MacroAccessibilityService`를 통해 다양한 UI 조작(터치, 롱 터치, 스와이프, 스크롤, 텍스트 입력, 드래그 앤 드롭, 더블 탭) 및 시스템 전역 액션(뒤로 가기, 홈, 최근 앱)을 수행합니다.
+* **백그라운드 실행:** `MyForegroundService`를 통해 앱이 화면에 보이지 않아도 매크로 작업을 백그라운드에서 안정적으로 실행합니다.
+* **API 키 관리:** 사용자가 자신의 OpenAI API 키를 안전하게 저장하고 사용할 수 있도록 SharedPreferences를 활용합니다.
 
-## **설치 방법**
+## 🚀 작동 방식 (워크플로우)
 
-1. **프로젝트 클론**
-    
-    이 프로젝트를 로컬 환경에 클론하려면 아래 명령어를 사용하세요:
-    
-    ```bash
-    git clone https://github.com/maria2580/Ai_Macrofy.git
-    
-    ```
-    
-2. **Android Studio에서 프로젝트 열기**
-    - Android Studio를 열고 `Ai_Macrofy` 프로젝트 폴더를 선택하여 엽니다.
-3. **필요한 권한 설정**
-    
-    앱을 실행하려면 **접근성 서비스**와 **권한 요청**을 허용해야 합니다. 앱 설정에서 `Ai_Macrofy`를 선택하여 서비스를 활성화해주세요.
-    
-4. **빌드 및 실행**
-    
-    Android Studio에서 프로젝트를 빌드하고, 안드로이드 기기나 에뮬레이터에서 실행합니다.
-    
+1.  **설정:** 사용자는 `MainActivity`에서 자신의 OpenAI API 키를 입력하고 저장합니다.
+2.  **명령 입력:** 사용자는 수행하고자 하는 작업을 자연어로 입력합니다 (예: "카카오톡 열고 친구에게 메시지 보내줘").
+3.  **매크로 시작:** 사용자가 "START MACRO" 버튼을 누르면 `MyForegroundService`가 시작됩니다.
+4.  **주기적 작업 루프 (`MyForegroundService`):**
+    a.  **화면 분석:** `LayoutAccessibilityService`가 현재 화면의 UI 요소 정보를 JSON 형태로 추출합니다.
+    b.  **프롬프트 구성:** 추출된 화면 정보, 사용자의 최초 명령, 그리고 이전 (화면 해시, GPT 응답) 이력 쌍들이 포함된 상세한 프롬프트를 구성합니다. 이 프롬프트는 GPT가 다음 행동을 결정하고, 반복적인 행동을 피하며, 작업 완료를 인지하도록 유도합니다.
+    c.  **GPT API 호출:** `GPTManager`를 통해 구성된 프롬프트를 OpenAI GPT-4o-mini 모델로 전송합니다.
+    d.  **액션 지시 수신:** GPT는 수행할 다음 작업을 특정 JSON 형식(예: `{"actions":[{"type":"touch", "coordinates":{"x":100, "y":200}}]}`)으로 반환합니다.
+    e.  **액션 실행:** `MacroAccessibilityService`가 이 JSON 응답을 파싱하여 화면에 해당 UI 조작을 실행합니다.
+    f.  **반복:** 작업이 GPT에 의해 "done"으로 판단되거나 사용자가 "STOP MACRO" 버튼을 누를 때까지 위 과정(a-e)을 반복합니다 (기본 1초 간격).
 
-## **사용 방법**
+## 📸 스크린샷
 
-1. **앱 실행**: 앱을 실행하고 **인스타그램 실행** 또는 **다른 앱 실행**을 요청하는 텍스트를 입력합니다.
-2. **작업 자동화**: 앱은 사용자가 설정한 작업을 자동으로 처리하고, 결과를 화면에 표시합니다.
-3. **작업 완료 판단**: 앱은 자동으로 목표가 달성되었는지 판단하고, 완료된 작업에 대해 "done"을 반환합니다.
-4. **스크롤 및 터치 작업**: 앱은 화면을 분석하여 자동으로 터치, 스크롤, 입력 등을 수행합니다.
+이 앱의 주요 화면들에 대한 스크린샷을 아래에 추가해주세요:
+<table align="center">
+      <tr>
+            <td align="center">
+                  <image src="https://github.com/user-attachments/assets/15d0057d-13b2-4bac-bf45-d9a88d6c0c2f" width="400">
+            </td>
+            <td align="center">
+                  <image src="https://github.com/user-attachments/assets/e3492429-2a3f-428b-90e5-39552562185e" width="400">
+                  <image src="https://github.com/user-attachments/assets/75a8b9ac-f879-44fc-9250-83268922aab0" width="400">
+            </td>
+      </tr>
+      <tr>
+            <td align="center">
+                  메인 화면 (`MainActivity`)
+            </td>
+            <td align="center">
+                  접근성 서비스 활성화 안내
+            </td>
+      </tr>
+</table>
+1.  **:** API 키 입력창, 작업 명령 입력창, 매크로 시작/중지 버튼, GPT 응답 결과 표시 영역.
+    * *(여기에 메인 화면 스크린샷을 넣어주세요)*
+2.  **:** 앱 사용 전 접근성 서비스 권한을 요청하거나 안내하는 부분 (또는 설정 화면의 스크린샷).
+    * *(여기에 접근성 서비스 관련 안내 스크린샷을 넣어주세요)*
+   <div align="center"><video src="https://github.com/user-attachments/assets/12855e3c-ab9e-4968-964c-a543bd664b34" width="400">
+   </div> 
+   <div align="center">
+      <p>open_ai의 프로젝트 api 키를 주입하고 명령을 타이핑하여 입력한다.</p>
+  <p>실행버튼을 누르자 홈 화면으로 이동하여 크롬을 실행한다. 이 과정에서 사용자의 개입은 일어나지 않았다.</p>
+   </div>
+   
+## 🛠️ 기술 스택
 
-## **주요 기능**
+* **언어:** Kotlin
+* **플랫폼:** Android
+* **핵심 기술:**
+    * Android Accessibility Services: 화면 정보 읽기 및 UI 조작
+    * OpenAI GPT-4o-mini API: 자연어 이해 및 작업 지시 생성
+* **네트워킹:** Retrofit2, OkHttp, Gson (OpenAI API 연동)
+* **비동기 처리:** Kotlin Coroutines
+* **서비스:** Android Foreground Service
+* **데이터 저장:** SharedPreferences (API 키 저장)
 
-### **1. 자동화된 터치**
+## ⚙️ 설정 및 사용법
 
-앱은 화면의 특정 좌표를 터치하여 동작을 실행합니다. 예를 들어, Instagram 앱을 실행하고 화면에서 특정 버튼을 자동으로 클릭합니다.
+### 사전 준비 사항
 
-```json
-{"actions":[{"type":"touch","coordinates":{"x":720,"y":794}}]}
+1.  **Android 장치/에뮬레이터:** 안드로이드 운영체제.
+2.  **OpenAI API Key:** OpenAI 플랫폼에서 발급받은 유효한 API 키.
 
-```
+### 빌드 및 실행
 
-### **2. 동작 완료 판단**
+1.  프로젝트를 Android Studio에서 엽니다.
+2.  필요한 경우 Gradle 동기화를 실행합니다.
+3.  Android 장치 또는 에뮬레이터에 앱을 빌드하고 설치합니다.
 
-앱은 작업을 수행한 후, 목표가 달성되었는지 판단합니다. 목표가 달성되면 **`"done"`** 상태를 반환합니다.
+### 초기 설정
 
-```json
-{"actions":[{"type":"done"}]}
+1.  **접근성 서비스 활성화:**
+    * 앱을 처음 실행하거나 매크로 시작 시, 접근성 서비스 권한이 필요하다는 안내가 나올 수 있습니다.
+    * Android 설정 > 접근성 > 설치된 서비스 (또는 유사한 메뉴)로 이동하여 **"Ai_macrofy"** (또는 Manifest에 정의된 `LayoutAccessibilityService` 및 `MacroAccessibilityService`의 레이블) 두 가지 모두 활성화합니다.
+2.  **OpenAI API 키 입력:**
+    * 앱 메인 화면에서 발급받은 OpenAI API 키를 입력하고 "Save API Key" 버튼을 눌러 저장합니다.
 
-```
+### 매크로 실행
 
-### **3. 화면 레이아웃 분석**
+1.  메인 화면의 "Enter your prompt here..." 필드에 자동화하고 싶은 작업을 자연어로 입력합니다.
+2.  "START MACRO" 버튼을 누릅니다.
+3.  앱이 백그라운드에서 작업을 수행하며, 필요한 경우 화면 상단에 Foreground Service 알림이 표시됩니다.
+4.  작업을 중단하고 싶으면 "STOP MACRO" 버튼을 누릅니다.
 
-앱은 UI의 상태를 분석하여, 이전과 동일한 화면인 경우 불필요한 동작을 반복하지 않도록 처리합니다.
+## 🔑 주요 컴포넌트
 
-## **필수 권한**
+* **`MainActivity.kt`**: 사용자 인터페이스 제공, 프롬프트 및 API 키 입력, 매크로 시작/중지 제어.
+* **`GPTManager.kt`**: OpenAI GPT API와의 모든 통신을 관리. 프롬프트 구성 및 응답 처리를 담당.
+* **`LayoutAccessibilityService.kt`**: 현재 화면의 레이아웃 정보를 실시간으로 추출하여 JSON 형태로 제공.
+* **`MacroAccessibilityService.kt`**: GPT로부터 받은 JSON 형식의 액션 지시를 실제 안드로이드 UI 조작으로 변환하여 실행.
+* **`MyForegroundService.kt`**: 레이아웃 추출, GPT API 호출, 액션 실행 등의 매크로 핵심 로직을 백그라운드에서 조율하고 실행하는 포그라운드 서비스. GPT에게 이전 작업 이력(화면 해시, GPT 액션)을 전달하여 상황에 맞는 판단을 유도.
+* **프롬프트 엔지니어링 (`MyForegroundService.sendToGPT`):** GPT가 정확한 JSON 형식의 액션을 반환하고, 반복적인 작업을 피하며, 작업 완료를 인지하도록 상세한 지침과 현재 화면 정보, 그리고 작업 이력을 포함한 프롬프트를 구성.
 
-- **BIND_ACCESSIBILITY_SERVICE**: 접근성 서비스 사용 권한
-- **INTERNET**: 외부 API 통신을 위한 인터넷 권한
-- **SYSTEM_ALERT_WINDOW**: 화면에 오버레이 표시 기능
-- **FOREGROUND_SERVICE**: 백그라운드 작업을 위한 권한
+## 📋 권한 요구 사항
 
-## **향후 계획**
+본 앱은 다음 권한을 필요로 합니다 (`AndroidManifest.xml` 참조):
 
-- **AI 기반 UI 자동 분석**: 더 복잡한 UI 변화에 대한 동작 예측을 개선하여 다양한 화면을 처리할 수 있도록 개선합니다.
-- **다양한 앱 지원**: Instagram 외에도 다른 인기 앱들에 대한 자동화 기능을 추가할 예정입니다.
-- **UI 인터페이스 개선**: 사용자가 설정을 쉽게 변경할 수 있도록 UI를 개선할 예정입니다.
+* `android.permission.BIND_ACCESSIBILITY_SERVICE`: 접근성 서비스 사용을 위해 필수.
+* `android.permission.INTERNET`: OpenAI API 통신을 위해 필요.
+* `android.permission.FOREGROUND_SERVICE` / `FOREGROUND_SERVICE_DATA_SYNC`: 백그라운드 매크로 실행을 위한 포그라운드 서비스에 필요.
+* `android.permission.SYSTEM_ALERT_WINDOW`: (매니페스트에 선언됨) - 현재 코드에서는 직접적인 사용처가 명확하지 않으나, 특정 UI 오버레이 기능에 필요할 수 있습니다.
+* `android.permission.CAMERA` (`required="false"`): (매니페스트에 선언됨) - 현재 코드에서는 사용되지 않는 것으로 보입니다.
 
-## **기여 방법**
+## 📄 설정 파일
 
-1. 프로젝트를 **포크(fork)** 합니다.
-2. 변경 사항을 **브랜치**에서 작업합니다.
-3. 작업이 완료되면 **풀 리퀘스트(PR)**를 생성합니다.
+* **`accessibility_service_config.xml`** (프로젝트 내 `res/xml/` 폴더에 위치해야 함 - 현재 제공되지 않음): 접근성 서비스의 상세 설정을 정의합니다. (예: 감지할 이벤트 유형, 접근할 수 있는 패키지 이름 등). 이 파일이 올바르게 설정되어야 서비스가 정상 작동합니다.
 
-## **라이선스**
+## 💡 참고 및 제한 사항
 
-이 프로젝트는 MIT 라이선스 하에 제공됩니다.
+* 자동화의 정확성과 성공률은 GPT 모델의 이해도, 화면 레이아웃의 복잡성 및 일관성, 프롬프트의 명확성에 따라 달라질 수 있습니다.
+* `MyForegroundService`에서 화면 변경을 감지하기 위해 사용된 "레이아웃 해시" (`layoutInfo.toString().length`)는 단순화된 방식으로, 복잡한 UI 변경을 정확히 감지하기에는 한계가 있을 수 있습니다. (향후 개선 가능)
+* 접근성 서비스는 강력한 권한을 가지므로, 신뢰할 수 있는 앱에서만 활성화해야 합니다.
+* `MediaProjection` API를 사용한 화면 직접 캡처 기능은 현재 코드에서 주석 처리되어 있습니다. (이 기능을 사용하려면 추가 권한 및 구현 필요).
