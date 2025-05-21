@@ -51,10 +51,7 @@
             </td>
       </tr>
 </table>
-1.  **:** API 키 입력창, 작업 명령 입력창, 매크로 시작/중지 버튼, GPT 응답 결과 표시 영역.
-    * *(여기에 메인 화면 스크린샷을 넣어주세요)*
-2.  **:** 앱 사용 전 접근성 서비스 권한을 요청하거나 안내하는 부분 (또는 설정 화면의 스크린샷).
-    * *(여기에 접근성 서비스 관련 안내 스크린샷을 넣어주세요)*
+<hr>
    <div align="center">
        <video src="https://github.com/user-attachments/assets/45b6cbd0-14ea-41a5-bfb4-4982934af00f" width="400">
    </div> 
