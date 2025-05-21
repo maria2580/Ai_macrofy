@@ -29,9 +29,7 @@
     e.  **액션 실행:** `MacroAccessibilityService`가 이 JSON 응답을 파싱하여 화면에 해당 UI 조작을 실행합니다.
     f.  **반복:** 작업이 GPT에 의해 "done"으로 판단되거나 사용자가 "STOP MACRO" 버튼을 누를 때까지 위 과정(a-e)을 반복합니다 (기본 1초 간격).
 
-## 📸 스크린샷
-
-이 앱의 주요 화면들에 대한 스크린샷을 아래에 추가해주세요:
+## 📸 주요 화면
 <table align="center">
       <tr>
             <td align="center">
@@ -53,7 +51,7 @@
 </table>
 <hr>
    <div align="center">
-       <video src="https://github.com/user-attachments/assets/45b6cbd0-14ea-41a5-bfb4-4982934af00f" width="400">
+       <video src="https://github.com/user-attachments/assets/a5ae8ea7-be13-46fb-a3f1-1f28f2085216" width="400">
    </div> 
    <div align="center">
       <p>open_ai의 프로젝트 api 키를 주입하고 명령을 타이핑하여 입력한다.</p>
