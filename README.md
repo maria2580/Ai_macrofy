@@ -55,13 +55,14 @@
     * *(여기에 메인 화면 스크린샷을 넣어주세요)*
 2.  **:** 앱 사용 전 접근성 서비스 권한을 요청하거나 안내하는 부분 (또는 설정 화면의 스크린샷).
     * *(여기에 접근성 서비스 관련 안내 스크린샷을 넣어주세요)*
-   <div align="center"><video src="https://github.com/user-attachments/assets/12855e3c-ab9e-4968-964c-a543bd664b34" width="400">
+   <div align="center">
+       <video src="https://github.com/user-attachments/assets/45b6cbd0-14ea-41a5-bfb4-4982934af00f" width="400">
    </div> 
    <div align="center">
       <p>open_ai의 프로젝트 api 키를 주입하고 명령을 타이핑하여 입력한다.</p>
   <p>실행버튼을 누르자 홈 화면으로 이동하여 크롬을 실행한다. 이 과정에서 사용자의 개입은 일어나지 않았다.</p>
    </div>
-   
+
 ## 🛠️ 기술 스택
 
 * **언어:** Kotlin
