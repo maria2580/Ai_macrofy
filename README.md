@@ -35,11 +35,11 @@
 <table align="center">
       <tr>
             <td align="center">
-                  <image src="https://github.com/user-attachments/assets/15d0057d-13b2-4bac-bf45-d9a88d6c0c2f" width="400">
+                  <image src="https://github.com/user-attachments/assets/15d0057d-13b2-4bac-bf45-d9a88d6c0c2f" width="400rem">
             </td>
             <td align="center">
-                  <image src="https://github.com/user-attachments/assets/e3492429-2a3f-428b-90e5-39552562185e" width="400">
-                  <image src="https://github.com/user-attachments/assets/75a8b9ac-f879-44fc-9250-83268922aab0" width="400">
+                  <image src="https://github.com/user-attachments/assets/75a8b9ac-f879-44fc-9250-83268922aab0" width="300rem">
+                  <image src="https://github.com/user-attachments/assets/e3492429-2a3f-428b-90e5-39552562185e" width="300rem">
             </td>
       </tr>
       <tr>
